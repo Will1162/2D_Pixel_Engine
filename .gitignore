@@ -1,0 +1,9 @@
+.vs
+2D_Pixel_Engine/obj
+2D_Pixel_Engine/bin
+2D_Pixel_Engine/Properties
+
+*.suo
+*.exe
+*.pdb
+*.cache
