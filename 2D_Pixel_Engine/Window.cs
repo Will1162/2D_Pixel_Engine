@@ -1,13 +1,12 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace _2D_Pixel_Engine
 {
     public partial class Window : Form
     {
-        private static int width = 800;
-        private static int height = 300;
+        private static readonly int width = 320;
+        private static readonly int height = 288;
 
         public Window()
         {
@@ -22,14 +21,18 @@ namespace _2D_Pixel_Engine
             this.Height = height;
             this.Height = height + (height - ClientRectangle.Height);
 
+
+
+
+            display.SetPixel(10, 10, 0x16, 0xd5, 0xd1);
+
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
                 {
-                    display.SetPixel(i, j, Color.FromArgb(i % 255, j % 255, 0));
+                    //display.SetPixel(i, j, 255, 128, 0);
                 }
             }
-
 
             outputPictureBox.Image = display.GetContents();
         }

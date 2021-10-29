@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
@@ -20,12 +21,15 @@ namespace _2D_Pixel_Engine
             data = new int[width * height];
 
             dataHandle = GCHandle.Alloc(data, GCHandleType.Pinned);
-            contents = new Bitmap(width, height, width * 4, PixelFormat.Format32bppPArgb, dataHandle.AddrOfPinnedObject());
+            contents = new Bitmap(width, height, width * 3, PixelFormat.Format24bppRgb, dataHandle.AddrOfPinnedObject());
         }
 
-        public void SetPixel(int x, int y, Color newColour)
+        public void SetPixel(int x, int y, byte r, byte g, byte b)
         {
-            data[x + (y * width)] = newColour.ToArgb();
+            int colour = r << 16 + g << 8 + b;
+            System.Diagnostics.Debug.WriteLine(Convert.ToString(colour, 16).PadLeft(6, '0'));
+
+            data[x + (y * width)] = colour;
         }
 
         public Color GetPixel(int x, int y)
